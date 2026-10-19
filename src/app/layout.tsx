@@ -2,6 +2,7 @@ import GlobalBackground from "@/components/shared/GlobalBackground";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { Toaster } from "@/components/ui/sonner";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 const geist = Geist({
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable} font-sans`}>
       <body>
-        <GlobalBackground>{children}</GlobalBackground>
+        <GlobalBackground>{children}
+          <Toaster richColors position="top-center"/>
+        </GlobalBackground>
       </body>
     </html>
   );
