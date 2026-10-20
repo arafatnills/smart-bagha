@@ -46,7 +46,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-   --font-sans: var(--font-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
 }
@@ -62,7 +62,7 @@
   --theme-gradient-middle: #ffffff;
   --theme-gradient-end: #fee2e2;
 
---theme-glow: rgb(251 113 133 / 35%);
+  --theme-glow: rgb(251 113 133 / 40%);
   --theme-border: #ffe4e6;
 
   --theme-text: #111827;
@@ -136,6 +136,7 @@
 }
 
 /* Reusable gradient background */
+
 .theme-background {
   background: linear-gradient(
     135deg,
@@ -145,37 +146,26 @@
   );
 }
 
-/* Reusable gradient background */
-.theme-background {
-  position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--theme-gradient-start) 0%,
-    var(--theme-gradient-middle) 50%,
-    var(--theme-gradient-end) 100%
-  );
-}
-
-/* Reusable background glow */
+/* Soft glass-like glow */
 .theme-glow {
   background: var(--theme-glow);
-  filter: blur(80px);
-  opacity: 0.65;
+  filter: blur(100px);
+  opacity: 1;
+  transform: translateZ(0);
+  will-change: filter;
 }
 
-/* Mobile: softer glow */
+/* Mobile: stronger blur to remove hard edges */
 @media (max-width: 767px) {
   .theme-glow {
-    filter: blur(100px);
-    opacity: 0.45;
+    filter: blur(110px);
   }
 }
 
-/* Desktop: preserve stronger glow */
+/* Desktop */
 @media (min-width: 768px) {
   .theme-glow {
-    filter: blur(110px);
-    opacity: 1;
+    filter: blur(130px);
   }
 }
 body {
