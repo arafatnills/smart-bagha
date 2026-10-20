@@ -62,7 +62,7 @@
   --theme-gradient-middle: #ffffff;
   --theme-gradient-end: #fee2e2;
 
-  --theme-glow: rgb(239 68 68 / 12%);
+--theme-glow: rgb(251 113 133 / 35%);
   --theme-border: #ffe4e6;
 
   --theme-text: #111827;
@@ -145,11 +145,39 @@
   );
 }
 
-/* Reusable background decorations */
-.theme-glow {
-  background: rgb(251 113 133 / 45%);
+/* Reusable gradient background */
+.theme-background {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--theme-gradient-start) 0%,
+    var(--theme-gradient-middle) 50%,
+    var(--theme-gradient-end) 100%
+  );
 }
 
+/* Reusable background glow */
+.theme-glow {
+  background: var(--theme-glow);
+  filter: blur(80px);
+  opacity: 0.65;
+}
+
+/* Mobile: softer glow */
+@media (max-width: 767px) {
+  .theme-glow {
+    filter: blur(100px);
+    opacity: 0.45;
+  }
+}
+
+/* Desktop: preserve stronger glow */
+@media (min-width: 768px) {
+  .theme-glow {
+    filter: blur(110px);
+    opacity: 1;
+  }
+}
 body {
   font-family: var(--font-geist), sans-serif;
   -webkit-font-smoothing: antialiased;
