@@ -39,7 +39,9 @@ export function EmailStep() {
       <div className="space-y-2">
         <Label htmlFor="email">Email address</Label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <Mail className="h-4 w-4 text-muted-foreground" />
+          </div>
           <Input
             id="email"
             type="email"

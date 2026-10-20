@@ -18,21 +18,21 @@ export function PasswordStep() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isPending, setIsPending] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleResetPassword = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
 
-    console.log({otp, email, password})
+    console.log({ otp, email, password });
     if (password === confirmPassword && password.length >= 6) {
       try {
         const result = await HandleResetPassword(email, otp, password);
         if (result.success) {
           toast.success(result.message);
           setIsPending(false);
-          router.push('/auth/login')
+          router.push("/auth/login");
           resetState();
         } else {
           toast.error(result.message);
@@ -50,7 +50,9 @@ export function PasswordStep() {
       <div className="space-y-2">
         <Label htmlFor="password">New password</Label>
         <div className="relative">
-          <LockKeyhole className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <LockKeyhole className="h-4 w-4 text-muted-foreground" />
+          </div>
           <Input
             id="password"
             type={showPassword ? "text" : "password"}
@@ -67,9 +69,13 @@ export function PasswordStep() {
             className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2"
           >
             {showPassword ? (
-              <EyeOff className="h-4 w-4" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <EyeOff className="h-4 w-4" />
+              </div>
             ) : (
-              <Eye className="h-4 w-4" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Eye className="h-4 w-4" />
+              </div>
             )}
           </button>
         </div>
@@ -81,7 +87,9 @@ export function PasswordStep() {
       <div className="space-y-2">
         <Label htmlFor="confirmPassword">Confirm new password</Label>
         <div className="relative">
-          <LockKeyhole className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <LockKeyhole className="h-4 w-4 text-muted-foreground" />
+          </div>
           <Input
             id="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
@@ -98,9 +106,13 @@ export function PasswordStep() {
             className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2"
           >
             {showConfirmPassword ? (
-              <EyeOff className="h-4 w-4" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <EyeOff className="h-4 w-4" />
+              </div>
             ) : (
-              <Eye className="h-4 w-4" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Eye className="h-4 w-4" />
+              </div>
             )}
           </button>
         </div>

@@ -1,24 +1,24 @@
 "use client";
 
 import {
-    ArrowRight,
-    Eye,
-    EyeOff,
-    HeartPulse,
-    LockKeyhole,
-    Mail,
+  ArrowRight,
+  Eye,
+  EyeOff,
+  HeartPulse,
+  LockKeyhole,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -76,8 +76,9 @@ export default function LoginForm() {
             <Label htmlFor="email">Email address</Label>
 
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="email"
                 name="email"
@@ -106,8 +107,9 @@ export default function LoginForm() {
             </div>
 
             <div className="relative">
-              <LockKeyhole className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <LockKeyhole className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="password"
                 name="password"
@@ -126,9 +128,13 @@ export default function LoginForm() {
                 className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2 text-muted-foreground"
               >
                 {showPassword ? (
-                  <EyeOff className="h-4 w-4" />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <EyeOff className="h-4 w-4" />
+                  </div>
                 ) : (
-                  <Eye className="h-4 w-4" />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Eye className="h-4 w-4" />
+                  </div>
                 )}
               </button>
             </div>
