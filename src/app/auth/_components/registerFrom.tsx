@@ -146,7 +146,9 @@ export default function RegisterForm() {
             <Label htmlFor="name">Full name</Label>
 
             <div className="relative">
-              <UserRound className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <UserRound className="h-4 w-4 text-muted-foreground" />
+              </div>
 
               <Input
                 id="name"
@@ -172,8 +174,9 @@ export default function RegisterForm() {
             <Label htmlFor="email">Email address</Label>
 
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="email"
                 type="email"
@@ -201,8 +204,9 @@ export default function RegisterForm() {
             <Label htmlFor="phone">Phone number</Label>
 
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="phone"
                 type="tel"
@@ -272,8 +276,9 @@ export default function RegisterForm() {
             <Label htmlFor="password">Password</Label>
 
             <div className="relative">
-              <LockKeyhole className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <LockKeyhole className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -315,8 +320,9 @@ export default function RegisterForm() {
             <Label htmlFor="confirmPassword">Confirm password</Label>
 
             <div className="relative">
-              <LockKeyhole className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <LockKeyhole className="h-4 w-4 text-muted-foreground" />
+              </div>
               <Input
                 id="confirmPassword"
                 type={showPassword ? "text" : "password"}
