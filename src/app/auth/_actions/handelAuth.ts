@@ -132,8 +132,8 @@ export const HandelConfirmCreateUser = async (payload: ConformCreateUser) => {
       };
     }
 
-    const accessToken = data.data?.accessToken;
-    const refreshToken = data.data?.refreshToken;
+    const accessToken = data.data.accessToken;
+    const refreshToken = data.data.refreshToken;
 
     const cookieStore = await cookies();
 
@@ -157,6 +157,59 @@ export const HandelConfirmCreateUser = async (payload: ConformCreateUser) => {
     }
 
     return { success: true, message: "OTP verified & Account created successfully!" };
+  } catch {
+    return { success: false, message: "Internal server error." };
+  }
+};
+
+// login email with password
+type LoginPayload = {
+  email: string;
+  password: string
+}
+export const HandelLogin = async (payload: LoginPayload) => {
+  try {
+    const backendUrl = process.env.BACKEND_API_URL;
+    const response = await fetch(`${backendUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to logged in!",
+      };
+    }
+
+    const accessToken = data.data.accessToken;
+    const refreshToken = data.data.refreshToken;
+
+    const cookieStore = await cookies();
+
+    
+    if (accessToken) {
+      cookieStore.set("accessToken", accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24, // 1 day
+      });
+    }
+
+    if (refreshToken) {
+      cookieStore.set("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7, // 7 days
+      });
+    }
+
+    return { success: true, message: "Logged in successfully!" };
   } catch {
     return { success: false, message: "Internal server error." };
   }

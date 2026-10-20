@@ -147,7 +147,7 @@
 
 /* Reusable background decorations */
 .theme-glow {
-  background: var(--theme-glow);
+  background: rgb(251 113 133 / 45%);
 }
 
 body {

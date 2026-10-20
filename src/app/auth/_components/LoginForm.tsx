@@ -23,27 +23,56 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import z from "zod";
+import { HandelLogin } from "../_actions/handelAuth";
+const loginUserZodSchema = z.object({
+  email: z.email(),
+  password: z
+    .string()
+    .min(6, "Password Must Minimum 6 Characters Long.")
+    .regex(/[a-z]/, "Password must contain atleast 1 Lowercase Letter")
+    .regex(/[A-Z]/, "Password must contain atleast 1 Uppercase Letter")
+
+    .regex(/[0-9]/, "Password must contain atleast 1 Number")
+    .regex(/[^A-Za-z0-9]/, "Password must contain atleast 1 Special Character"),
+});
+
+type LoginFormValues = z.infer<typeof loginUserZodSchema>;
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginUserZodSchema),
+    mode: "onTouched",
+  });
 
-    const formData = new FormData(event.currentTarget);
-
+  const onSubmit = async (data: LoginFormValues) => {
     const payload = {
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      password: formData.get("password") as string,
+      email: data.email.trim().toLowerCase(),
+      password: data.password.trim(),
     };
 
     try {
       setIsLoading(true);
 
-      // TODO: Connect your backend login API here.
-      console.log("Login payload:", payload);
+      const result = await HandelLogin(payload);
+      if (result.success) {
+        toast.success(result.message);
+        router.push('/')
+      } else {
+        toast.error(result.message);
+      }
     } catch (error) {
       console.error("Login failed:", error);
     } finally {
@@ -70,7 +99,7 @@ export default function LoginForm() {
       </CardHeader>
 
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Email */}
           <div className="space-y-2">
             <Label htmlFor="email">Email address</Label>
@@ -81,14 +110,18 @@ export default function LoginForm() {
               </div>
               <Input
                 id="email"
-                name="email"
                 type="email"
                 placeholder="you@example.com"
                 autoComplete="email"
                 className="h-11 pl-10"
-                required
+                {...register("email")}
               />
             </div>
+            {errors.email && (
+              <p className="text-xs text-red-500">
+                {errors.email.message as string}
+              </p>
+            )}
           </div>
 
           {/* Password */}
@@ -112,12 +145,11 @@ export default function LoginForm() {
               </div>
               <Input
                 id="password"
-                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 autoComplete="current-password"
                 className="h-11 pl-10 pr-11"
-                required
+                {...register("password")}
               />
 
               <button
@@ -138,6 +170,9 @@ export default function LoginForm() {
                 )}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-xs text-red-500">{errors.password.message}</p>
+            )}
           </div>
 
           {/* Login button */}
