@@ -146,32 +146,7 @@
   );
 }
 
-/* Soft glass-like glow */
-.theme-glow {
-  background: var(--theme-glow);
-  filter: blur(100px);
-  opacity: 1;
-  transform: translateZ(0);
-  will-change: filter;
-}
 
-/* Mobile: stronger blur to remove hard edges */
-@media (max-width: 767px) {
-  .theme-glow {
-    filter: blur(110px);
-  }
-}
-
-/* Desktop */
-@media (min-width: 768px) {
-  .theme-glow {
-    filter: blur(130px);
-  }
-}
-body {
-  font-family: var(--font-geist), sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
 
 @layer base {
   * {
