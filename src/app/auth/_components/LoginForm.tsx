@@ -233,7 +233,7 @@ export default function LoginForm() {
             size="large"
             shape="rectangular"
             text="continue_with"
-            width="350"
+            width="100%"
           />
         </div>
       </CardContent>
