@@ -1,5 +1,6 @@
 import GoogleProvider from "@/components/providers/GoogleProvider";
 import GlobalBackground from "@/components/shared/GlobalBackground";
+import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <GlobalBackground>
           <GoogleProvider>
+            <Navbar/>
             {children}
             <Toaster richColors position="top-center" />
           </GoogleProvider>
