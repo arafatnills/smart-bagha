@@ -24,11 +24,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { GoogleLogin } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
-import { HandelLogin } from "../_actions/handelAuth";
+import { HandelGoogleLogin, HandelLogin } from "../_actions/handelAuth";
 const loginUserZodSchema = z.object({
   email: z.email(),
   password: z
@@ -75,6 +76,36 @@ export default function LoginForm() {
       }
     } catch (error) {
       console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: {
+    credential?: string;
+  }) => {
+    const idToken = credentialResponse.credential;
+
+    if (!idToken) {
+      toast.error("Google authentication failed. Please try again.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const result = await HandelGoogleLogin(idToken);
+
+      if (result.success) {
+        toast.success(result.message);
+        router.push("/");
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      console.error("Google login failed:", error);
+      toast.error("Google login failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -181,6 +212,30 @@ export default function LoginForm() {
             {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
           </Button>
         </form>
+
+       
+        <div className="space-y-5 mt-5">
+          <div className="relative flex items-center">
+            <Separator />
+            <span className="absolute left-1/2 -translate-x-1/2 bg-card px-3 text-xs text-muted-foreground">
+              OR CONTINUE WITH
+            </span>
+          </div>
+
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => {
+              toast.error("Google sign-in was unsuccessful.");
+            }}
+            useOneTap={false}
+            theme="outline"
+            ux_mode="popup"
+            size="large"
+            shape="rectangular"
+            text="continue_with"
+            width="100%"
+          />
+        </div>
       </CardContent>
 
       <CardFooter className="flex flex-col gap-4">

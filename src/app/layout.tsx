@@ -1,3 +1,4 @@
+import GoogleProvider from "@/components/providers/GoogleProvider";
 import GlobalBackground from "@/components/shared/GlobalBackground";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
@@ -27,17 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${manrope.variable}`}
-    >
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body
         style={{ fontFamily: "var(--font-inter), Arial, sans-serif" }}
         className="antialiased"
       >
         <GlobalBackground>
-          {children}
-          <Toaster richColors position="top-center" />
+          <GoogleProvider>
+            {children}
+            <Toaster richColors position="top-center" />
+          </GoogleProvider>
         </GlobalBackground>
       </body>
     </html>

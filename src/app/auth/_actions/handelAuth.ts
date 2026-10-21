@@ -214,3 +214,57 @@ export const HandelLogin = async (payload: LoginPayload) => {
     return { success: false, message: "Internal server error." };
   }
 };
+
+
+// login with google
+
+export const HandelGoogleLogin = async (idToken: string): Promise<{
+  success: boolean;
+  message: string;
+}> => {
+  try {
+    const backendUrl = process.env.BACKEND_API_URL;
+    const res = await fetch(`${backendUrl}/auth/google`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idToken }),
+    });
+    const result = await res.json();
+    if (!res.ok) {
+      return {
+        success: false,
+        message: result.message || "Google login failed",
+      };
+    }
+
+    const cookieStore = await cookies();
+    cookieStore.set("accessToken", result.data.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24,
+      path: "/",
+    });
+
+    cookieStore.set("refreshToken", result.data.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+
+    return {
+      success: true,
+      message: "Logged in successfully!",
+    };
+  } catch (error) {
+    console.log("Google login error:", error);
+    return {
+      success: false,
+      message: "Something went wrong during Google login.",
+    };
+  }
+}
