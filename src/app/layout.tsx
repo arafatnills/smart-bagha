@@ -31,7 +31,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${manrope.variable}`}
     >
-      <body className="font-sans antialiased">
+      <body
+        style={{ fontFamily: "var(--font-inter), Arial, sans-serif" }}
+        className="antialiased"
+      >
         <GlobalBackground>
           {children}
           <Toaster richColors position="top-center" />

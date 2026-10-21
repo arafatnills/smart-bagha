@@ -166,20 +166,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+body {
+  font-family: var(--font-inter), Arial, sans-serif !important;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-manrope), Arial, sans-serif;
-  }
-
-  button,
-  input,
-  textarea,
-  select {
-    font: inherit;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), Arial, sans-serif !important;
+}
 }
