@@ -18,7 +18,7 @@ const services = [
     title: "Emergency Services",
     description:
       "Get quick access to emergency blood requests and essential services when you or your loved ones need help.",
-    primary: "Get Emergency Help",
+    primary: "Emergency Help",
     href: "/emergency",
   },
   {
