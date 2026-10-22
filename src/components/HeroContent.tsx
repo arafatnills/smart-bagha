@@ -91,7 +91,7 @@ const HeroContent = () => {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <p className="mb-5 text-sm font-semibold uppercase tracking-[0.25em] text-red-600 sm:text-base">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-red-600 sm:mb-5 sm:text-base">
           {welcomeText}
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
@@ -113,16 +113,16 @@ const HeroContent = () => {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
             {currentService.title}
             <span className="text-red-600">.</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+          <p className="mt-3 max-w-xl line-clamp-3 text-sm leading-6 text-muted-foreground sm:mt-5 sm:text-lg sm:leading-7 md:line-clamp-none">
             {currentService.description}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-5 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
             <Button
               asChild
               size="lg"
@@ -146,7 +146,7 @@ const HeroContent = () => {
       </AnimatePresence>
 
       {/* Service indicators */}
-      <div className="mt-8 flex items-center gap-2">
+      <div className="mt-5 flex items-center gap-2 sm:mt-8">
         {services.map((service, index) => (
           <button
             key={service.title}

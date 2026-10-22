@@ -2,7 +2,6 @@
 
 import type { ApiResponse, User } from "@/types/user";
 import { cookies } from "next/headers";
-import { unstable_rethrow } from "next/navigation";
 
 export async function getMe(): Promise<User | null> {
   const token = (await cookies()).get("accessToken")?.value;
@@ -18,7 +17,6 @@ export async function getMe(): Promise<User | null> {
     const json: ApiResponse<User> = await res.json();
     return json.data;
   } catch (error) {
-    unstable_rethrow(error);
     console.error("[getMe] Request failed:", error);
     return null;
   }

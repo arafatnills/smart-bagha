@@ -1,9 +1,11 @@
 import { getMe } from "@/lib/getMe";
+import { connection } from "next/server";
 import StoreInitializer from "./AuthInit";
 import MobileMenu from "./MobileMenu";
 import NavAuth from "./NavAuth";
 
 export default async function NavRight() {
+  await connection();
   const user = await getMe();
   return (
     <>
