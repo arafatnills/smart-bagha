@@ -50,14 +50,10 @@ export default function MobileMenu({ user }: { user: User | null }) {
     <div className="flex items-center gap-1 md:hidden">
       {/* Left: profile pic only (logged-in hole) */}
       {user && (
-        <Link
-          href="/dashboard"
-          prefetch={false}
-          aria-label="My profile"
-          className="rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
-        >
-          <UserAvatar user={user} className="size-8" />
-        </Link>
+        <UserAvatar
+          user={user}
+          className="size-8 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+        />
       )}
 
       {/* Right: 3-line hamburger */}
@@ -101,10 +97,11 @@ export default function MobileMenu({ user }: { user: User | null }) {
                         href={link.href}
                         prefetch={false}
                         aria-current={active ? "page" : undefined}
-                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors ${active
+                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                          active
                             ? "bg-red-50 text-red-600"
                             : "text-foreground hover:bg-muted"
-                          }`}
+                        }`}
                       >
                         {link.name}
                         <ChevronRight className="size-4 opacity-40" />

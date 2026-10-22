@@ -12,7 +12,7 @@ export type ActivityItem = {
 type ActivityCardProps = Omit<ActivityItem, "id">;
 
 const cardClass =
-    "group flex h-full items-center gap-3 rounded-xl border bg-muted/40 p-3 sm:gap-4 sm:p-4 lg:p-5";
+  "group flex h-full items-center gap-3 rounded-xl border bg-muted/40 p-3 sm:gap-4 sm:p-4 lg:p-5";
 export default function ActivityCard({
   title,
   subtitle,

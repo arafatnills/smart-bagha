@@ -42,7 +42,7 @@ export default function ActivitySection() {
                 </h2>
             </Reveal>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+            <div className="grid grid-cols-1 min-[324px]:grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
                 {items.map(({ id, ...item }, index) => (
                     <Reveal key={id} delay={0.1 + index * 0.08} className="h-full">
                         <ActivityCard {...item} />
