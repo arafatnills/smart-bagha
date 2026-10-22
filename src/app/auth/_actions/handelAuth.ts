@@ -137,7 +137,6 @@ export const HandelConfirmCreateUser = async (payload: ConformCreateUser) => {
 
     const cookieStore = await cookies();
 
-    
     if (accessToken) {
       cookieStore.set("accessToken", accessToken, {
         httpOnly: true,
@@ -156,7 +155,10 @@ export const HandelConfirmCreateUser = async (payload: ConformCreateUser) => {
       });
     }
 
-    return { success: true, message: "OTP verified & Account created successfully!" };
+    return {
+      success: true,
+      message: "OTP verified & Account created successfully!",
+    };
   } catch {
     return { success: false, message: "Internal server error." };
   }
@@ -165,8 +167,8 @@ export const HandelConfirmCreateUser = async (payload: ConformCreateUser) => {
 // login email with password
 type LoginPayload = {
   email: string;
-  password: string
-}
+  password: string;
+};
 export const HandelLogin = async (payload: LoginPayload) => {
   try {
     const backendUrl = process.env.BACKEND_API_URL;
@@ -190,7 +192,6 @@ export const HandelLogin = async (payload: LoginPayload) => {
 
     const cookieStore = await cookies();
 
-    
     if (accessToken) {
       cookieStore.set("accessToken", accessToken, {
         httpOnly: true,
@@ -215,10 +216,11 @@ export const HandelLogin = async (payload: LoginPayload) => {
   }
 };
 
-
 // login with google
 
-export const HandelGoogleLogin = async (idToken: string): Promise<{
+export const HandelGoogleLogin = async (
+  idToken: string,
+): Promise<{
   success: boolean;
   message: string;
 }> => {
@@ -231,6 +233,7 @@ export const HandelGoogleLogin = async (idToken: string): Promise<{
       },
       body: JSON.stringify({ idToken }),
     });
+
     const result = await res.json();
     if (!res.ok) {
       return {
@@ -246,6 +249,11 @@ export const HandelGoogleLogin = async (idToken: string): Promise<{
       sameSite: "lax",
       maxAge: 60 * 60 * 24,
       path: "/",
+    });
+
+    console.log("[Google Login] Cookie set attempted:", {
+      hasAccessToken: Boolean(cookieStore.get("accessToken")?.value),
+      environment: process.env.NODE_ENV,
     });
 
     cookieStore.set("refreshToken", result.data.refreshToken, {
@@ -267,9 +275,9 @@ export const HandelGoogleLogin = async (idToken: string): Promise<{
       message: "Something went wrong during Google login.",
     };
   }
-}
+};
 
-// log out 
+// log out
 export const HandelLogout = async () => {
   const cookieStore = await cookies();
   cookieStore.delete("accessToken");
