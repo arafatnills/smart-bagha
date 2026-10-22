@@ -1,40 +1,24 @@
-import type { User } from "@/types/user";
+"use server";
+
+import type { ApiResponse, User } from "@/types/user";
 import { cookies } from "next/headers";
+import { unstable_rethrow } from "next/navigation";
 
 export async function getMe(): Promise<User | null> {
   const token = (await cookies()).get("accessToken")?.value;
-
-  if (!token) {
-    console.log("[getMe] accessToken cookie missing");
-    return null;
-  }
-
-  const backendUrl = process.env.BACKEND_API_URL;
-  console.log("[getMe] Backend URL configured:", Boolean(backendUrl), backendUrl);
-  if (!backendUrl) {
-    console.error("[getMe] BACKEND_API_URL is missing");
-    return null;
-  }
+  if (!token) return null;
 
   try {
-    const res = await fetch(`${backendUrl}/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const res = await fetch(`${process.env.BACKEND_API_URL}/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     });
+    if (!res.ok) return null;
 
-    if (!res.ok) {
-      console.error("[getMe] Backend response:", res.status);
-      return null;
-    }
-
-    const json = await res.json();
-
-    console.log("[getMe] User fetch successful");
-
-    return json.data ?? null;
+    const json: ApiResponse<User> = await res.json();
+    return json.data;
   } catch (error) {
+    unstable_rethrow(error);
     console.error("[getMe] Request failed:", error);
     return null;
   }
