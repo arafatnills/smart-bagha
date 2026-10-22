@@ -2,16 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuthStore } from "@/store/useAuthStore";
+import { useForgotAuthStore } from "@/store/useAuthStore";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { HandleSendOtp } from "../_actions/handelAuth";
 
 export function EmailStep() {
-  const email = useAuthStore((state) => state.email);
-  const setEmail = useAuthStore((state) => state.setEmail);
-  const setStep = useAuthStore((state) => state.setStep);
+  const email = useForgotAuthStore((state) => state.email);
+  const setEmail = useForgotAuthStore((state) => state.setEmail);
+  const setStep = useForgotAuthStore((state) => state.setStep);
   const [isPending, setIsPending] = useState(false);
 
   const handleSendOtp = async (event: React.FormEvent<HTMLFormElement>) => {

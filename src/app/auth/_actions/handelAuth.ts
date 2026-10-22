@@ -268,3 +268,10 @@ export const HandelGoogleLogin = async (idToken: string): Promise<{
     };
   }
 }
+
+// log out 
+export const HandelLogout = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("accessToken");
+  cookieStore.delete("refreshToken");
+};

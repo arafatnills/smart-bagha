@@ -1,4 +1,4 @@
-import GoogleProvider from "@/components/providers/GoogleProvider";
+import GoogleProvider from "@/providers/GoogleProvider";
 import GlobalBackground from "@/components/shared/GlobalBackground";
 import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "@/components/ui/sonner";
@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <GlobalBackground>
           <GoogleProvider>
-            <Navbar/>
+            <Navbar />
             {children}
             <Toaster richColors position="top-center" />
           </GoogleProvider>

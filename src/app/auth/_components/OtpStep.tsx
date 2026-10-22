@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuthStore } from "@/store/useAuthStore";
+import { useForgotAuthStore } from "@/store/useAuthStore";
 import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { HandleVerifyOtp } from "../_actions/handelAuth";
 
 export function OtpStep() {
-  const email = useAuthStore((state) => state.email);
-  const otp = useAuthStore((state) => state.otp);
-  const setOtp = useAuthStore((state) => state.setOtp);
-  const setStep = useAuthStore((state) => state.setStep);
+  const email = useForgotAuthStore((state) => state.email);
+  const otp = useForgotAuthStore((state) => state.otp);
+  const setOtp = useForgotAuthStore((state) => state.setOtp);
+  const setStep = useForgotAuthStore((state) => state.setStep);
   const [isPending, setIsPending] = useState(false);
 
   const handleVerifyOtp = async (event: React.FormEvent<HTMLFormElement>) => {

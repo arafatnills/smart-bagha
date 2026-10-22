@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuthStore } from "@/store/useAuthStore";
+import { useForgotAuthStore } from "@/store/useAuthStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -34,9 +34,9 @@ const changePasswordSchema = z
 type ChangePasswordValue = z.infer<typeof changePasswordSchema>;
 
 export function PasswordStep() {
-  const email = useAuthStore((state) => state.email);
-  const otp = useAuthStore((state) => state.otp);
-  const resetState = useAuthStore((state) => state.resetState);
+  const email = useForgotAuthStore((state) => state.email);
+  const otp = useForgotAuthStore((state) => state.otp);
+  const resetState = useForgotAuthStore((state) => state.resetState);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isPending, setIsPending] = useState(false);

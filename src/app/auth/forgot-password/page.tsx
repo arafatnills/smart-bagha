@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Check, HeartPulse } from "lucide-react";
 import Link from "next/link";
 
-import { useAuthStore } from "@/store/useAuthStore";
+import { useForgotAuthStore } from "@/store/useAuthStore";
 import { EmailStep } from "../_components/EmailStep";
 import { OtpStep } from "../_components/OtpStep";
 import { PasswordStep } from "../_components/PasswordStep";
@@ -28,7 +28,7 @@ const steps = [
 
 export default function ForgotPasswordPage() {
 
-    const step = useAuthStore((state) => state.step);
+    const step = useForgotAuthStore((state) => state.step);
     const progress = (step / steps.length) * 100;
 
     return (

@@ -1,7 +1,26 @@
+import { User } from "@/types/user";
 import { create } from "zustand";
+// get users
+
+
+type AuthState = {
+  user: User | null;
+  setUser: (user: User | null) => void;
+};
+
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+}));
+
+
+
+
+
+
 
 // forgot & reset password
-interface AuthState {
+interface ForgotAuthState {
   step: number;
   email: string;
   otp: string;
@@ -17,7 +36,7 @@ const initialAuthState = {
   otp: "",
 };
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useForgotAuthStore = create<ForgotAuthState>((set) => ({
   ...initialAuthState,
 
   setStep: (newStep) => set({ step: newStep }),
