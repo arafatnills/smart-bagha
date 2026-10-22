@@ -10,7 +10,7 @@ export async function getMe(): Promise<User | null> {
   }
 
   const backendUrl = process.env.BACKEND_API_URL;
-
+  console.log("[getMe] Backend URL configured:", Boolean(backendUrl), backendUrl);
   if (!backendUrl) {
     console.error("[getMe] BACKEND_API_URL is missing");
     return null;
