@@ -1,20 +1,41 @@
-'use server'
 import type { User } from "@/types/user";
 import { cookies } from "next/headers";
 
 export async function getMe(): Promise<User | null> {
-    const token = (await cookies()).get("accessToken")?.value;
-    if (!token) return null;
+  const token = (await cookies()).get("accessToken")?.value;
 
-    try {
-        const res = await fetch(`${process.env.BACKEND_API_URL}/auth/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-            cache: "no-store",
-        });
-        if (!res.ok) return null;
-        const json = await res.json();
-        return json.data;
-    } catch {
-        return null;
+  if (!token) {
+    console.log("[getMe] accessToken cookie missing");
+    return null;
+  }
+
+  const backendUrl = process.env.BACKEND_API_URL;
+
+  if (!backendUrl) {
+    console.error("[getMe] BACKEND_API_URL is missing");
+    return null;
+  }
+
+  try {
+    const res = await fetch(`${backendUrl}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error("[getMe] Backend response:", res.status);
+      return null;
     }
+
+    const json = await res.json();
+
+    console.log("[getMe] User fetch successful");
+
+    return json.data ?? null;
+  } catch (error) {
+    console.error("[getMe] Request failed:", error);
+    return null;
+  }
 }

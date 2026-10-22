@@ -40,7 +40,7 @@ const services = [
     description:
       "Your blood donation can give someone another chance at life. Become a donor and make a difference in your community.",
     primary: "Become a Donor",
-    href: "/register",
+    href: "/auth/register",
   },
 ];
 
@@ -128,7 +128,7 @@ const HeroContent = () => {
               size="lg"
               className="rounded-full bg-red-600 px-7 text-white hover:bg-red-700"
             >
-              <Link href={currentService.href}>
+              <Link href={currentService.href} prefetch={false}>
                 {currentService.primary}
               </Link>
             </Button>
@@ -139,7 +139,7 @@ const HeroContent = () => {
               variant="outline"
               className="rounded-full px-7"
             >
-              <Link href="/about">Learn More</Link>
+              <Link prefetch={false} href="/about">Learn More</Link>
             </Button>
           </div>
         </motion.div>

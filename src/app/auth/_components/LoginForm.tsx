@@ -70,7 +70,8 @@ export default function LoginForm() {
       const result = await HandelLogin(payload);
       if (result.success) {
         toast.success(result.message);
-        router.push("/");
+        router.replace("/");
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -98,7 +99,8 @@ export default function LoginForm() {
 
       if (result.success) {
         toast.success(result.message);
-        router.push("/");
+
+        router.replace("/");
         router.refresh();
       } else {
         toast.error(result.message);
