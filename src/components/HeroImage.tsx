@@ -12,11 +12,11 @@ const HeroImage = () => {
       animate={{ opacity: 1, scale: 1, x: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className="
-        pointer-events-none relative z-10
-        -mx-4 mt-2 min-h-64 w-[calc(100%+2rem)] flex-1
-        md:absolute md:inset-y-0 md:right-0 md:mx-0 md:mt-0
-        md:min-h-0 md:w-[50%] md:flex-none lg:w-[55%]
-      "
+  pointer-events-none relative z-10
+  -mx-4 mt-2 h-64 w-[calc(100%+2rem)] shrink-0 sm:h-80
+  md:absolute md:inset-y-0 md:right-0 md:mx-0 md:mt-0
+  md:h-auto md:w-[50%] lg:w-[55%]
+"
     >
       <motion.div
         className="absolute inset-0"

@@ -24,7 +24,10 @@ export function NavRightFallback() {
   return (
     <>
       <div className="hidden h-9 w-28 rounded-md bg-muted md:block" />
-      <div className="h-9 w-9 rounded-md bg-muted md:hidden" />
+      <div className="flex items-center gap-1 md:hidden">
+        <div className="size-8 rounded-full bg-muted" />
+        <div className="size-10 rounded-md bg-muted" />
+      </div>
     </>
   );
 }
