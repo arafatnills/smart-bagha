@@ -1,7 +1,7 @@
-import GoogleProvider from "@/providers/GoogleProvider";
 import GlobalBackground from "@/components/shared/GlobalBackground";
-import Navbar from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/nav/Navbar";
 import { Toaster } from "@/components/ui/sonner";
+import GoogleProvider from "@/providers/GoogleProvider";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";

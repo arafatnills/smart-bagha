@@ -1,4 +1,4 @@
-import Reveal from "../shared/Reveal";
+import Reveal from "../shared/nav/Reveal";
 import ActivityCard, { type ActivityItem } from "./ActivityCard";
 const activities = [
   {

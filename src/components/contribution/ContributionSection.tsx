@@ -1,4 +1,4 @@
-import Reveal from "@/components/shared/Reveal";
+import Reveal from "@/components/shared/nav/Reveal";
 import ContributionCard, {
     type ContributionItem,
 } from "./ContributionCard";

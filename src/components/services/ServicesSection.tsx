@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import Reveal from "@/components/shared/Reveal";
+import Reveal from "@/components/shared/nav/Reveal";
 import {
     Carousel,
     CarouselContent,

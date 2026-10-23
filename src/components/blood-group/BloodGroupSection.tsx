@@ -1,4 +1,4 @@
-import Reveal from "../shared/Reveal";
+import Reveal from "../shared/nav/Reveal";
 import BloodGroupCard, { type BloodGroupItem } from "./BloodGroupCard";
 
 const bloodGroups = [

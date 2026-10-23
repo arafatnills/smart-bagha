@@ -114,7 +114,7 @@ export default function MobileMenu({ user }: { user: User | null }) {
           </nav>
 
           {/* Bottom: user info */}
-          <div className="border-t bg-muted/30 px-5 pt-4 pb-[calc(env(safe-area-inset-bottom)+4.5rem)]">
+          <div className="border-t bg-muted/30 px-5 pt-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)]">
             {user ? (
               <>
                 <div className="flex items-center gap-3">
