@@ -105,16 +105,12 @@ export function PasswordStep() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2"
+            className="absolute right-1 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
           >
             {showPassword ? (
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <EyeOff className="h-4 w-4" />
-              </div>
+              <EyeOff className="h-4 w-4" />
             ) : (
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <Eye className="h-4 w-4" />
-              </div>
+              <Eye className="h-4 w-4" />
             )}
           </button>
         </div>
@@ -141,16 +137,12 @@ export function PasswordStep() {
           <button
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2"
+            className="absolute right-1 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
           >
             {showConfirmPassword ? (
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <EyeOff className="h-4 w-4" />
-              </div>
+              <EyeOff className="h-4 w-4" />
             ) : (
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <Eye className="h-4 w-4" />
-              </div>
+              <Eye className="h-4 w-4" />
             )}
           </button>
         </div>
