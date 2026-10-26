@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Droplet, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import type { Donor } from "./find-blood-data";
 
 export default function DonorCard({
+    id,
     name,
     bloodGroup,
     location,
@@ -11,7 +13,7 @@ export default function DonorCard({
     totalDonations,
     available,
     phone,
-}: Omit<Donor, "id">) {
+}: Donor) {
     return (
         <div className="flex h-full flex-col rounded-2xl border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
             <div className="flex items-start justify-between gap-3">
@@ -29,7 +31,11 @@ export default function DonorCard({
                 </span>
             </div>
 
-            <h3 className="mt-4 text-base font-semibold">{name}</h3>
+            <h3 className="mt-4 text-base font-semibold">
+                <Link href={`/donors/${id}`} className="hover:text-red-600">
+                    {name}
+                </Link>
+            </h3>
             <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
                 <MapPin className="h-3.5 w-3.5" /> {area}, {location}
             </p>
@@ -54,6 +60,12 @@ export default function DonorCard({
                     <span>Not available</span>
                 )}
             </Button>
+            <Link
+                href={`/donors/${id}`}
+                className="mt-2 block text-center text-sm font-medium text-red-600 hover:underline"
+            >
+                View profile &amp; tracking
+            </Link>
         </div>
     );
 }

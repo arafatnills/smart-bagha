@@ -53,8 +53,8 @@ export default function DonorSearchSection() {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-6">
-                    {results.map(({ id, ...donor }, i) => (
-                        <Reveal key={id} delay={0.05 + (i % 6) * 0.06} y={16} className="h-full">
+                    {results.map((donor, i) => (
+                        <Reveal key={donor.id} delay={0.05 + (i % 6) * 0.06} y={16} className="h-full">
                             <DonorCard {...donor} />
                         </Reveal>
                     ))}
